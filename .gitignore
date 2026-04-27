@@ -1,0 +1,29 @@
+# Local kubeconfig
+*.kubeconfig
+kubeconfig*
+.envrc
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Secrets — *.sealed.yaml만 git에 들어가야 함
+*.secret.yaml
+*.unsealed.yaml
+secrets/
+master.key.backup
+
+# Build artifacts
+node_modules/
+dist/
+*.log
+
+# Helm chart cache (Kustomize HelmChart wrapper)
+charts/
