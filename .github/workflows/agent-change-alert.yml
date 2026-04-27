@@ -1,0 +1,39 @@
+name: agent-change-alert
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - '.claude/agents/**'
+      - '.claude/settings.json'
+      - 'docs/superpowers/security-controls.md'
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    if: ${{ env.DISCORD_WEBHOOK_URL != '' }}
+    env:
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+    steps:
+      - name: Compute changed files
+        id: files
+        run: |
+          gh pr view ${{ github.event.pull_request.number }} \
+            --repo ${{ github.repository }} \
+            --json files -q '.files[].path' > /tmp/files.txt
+          {
+            echo "count=$(wc -l < /tmp/files.txt | tr -d ' ')"
+            echo "list<<EOF"
+            cat /tmp/files.txt
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Notify Discord
+        run: |
+          MSG=$(jq -nc --arg url "${{ github.event.pull_request.html_url }}" \
+                       --arg title "${{ github.event.pull_request.title }}" \
+                       --arg author "${{ github.event.pull_request.user.login }}" \
+                       --arg files "${{ steps.files.outputs.list }}" \
+            '{content: "🔐 **Agent/security file change detected**\n\n**PR**: \($title)\n**Author**: \($author)\n**URL**: \($url)\n\n**Changed files**:\n```\n\($files)\n```\n\n⚠️ Review carefully — these files are part of the trust boundary."}')
+          curl -fs -X POST -H 'Content-Type: application/json' \
+            -d "$MSG" "$DISCORD_WEBHOOK_URL"
