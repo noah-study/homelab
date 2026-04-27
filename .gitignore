@@ -27,3 +27,4 @@ dist/
 
 # Helm chart cache (Kustomize HelmChart wrapper)
 charts/
+.claude/ralph-loop.local.md
