@@ -110,8 +110,8 @@ infra/
 ### Task 1.1: Repo 초기화 + 디렉토리 골격
 
 **Files:**
-- Create: `infra/.gitignore`
-- Create: `infra/README.md`
+- Create: `.gitignore`
+- Create: `README.md`
 - Create: 디렉토리 골격 (`bootstrap/`, `argocd/`, `platform/`, `apps/`, `scripts/`, `tests/`, `docs/`)
 
 - [ ] **Step 1: git init + branch 명명**

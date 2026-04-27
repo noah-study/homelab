@@ -1,0 +1,33 @@
+# Default: 모든 변경에 본인 강제 리뷰
+*                                       @noah-study
+
+# Critical paths — 변경 시 본인 명시 리뷰 + Discord 알림 (Phase 16에서 webhook 추가)
+
+# Agent definitions (system prompt 변조 = supply chain 공격 표면)
+/.claude/agents/                        @noah-study
+/.claude/settings.local.json            @noah-study
+
+# Bootstrap (1회 적용 후 ArgoCD가 관리, 실수 시 클러스터 재셋업)
+/bootstrap/                             @noah-study
+
+# ArgoCD 정의 (App-of-Apps 루트 + AppProject + ApplicationSet)
+/argocd/                                @noah-study
+
+# Platform 컴포넌트 (Cilium, ingress-nginx, cert-manager 등)
+/platform/                              @noah-study
+
+# CI/CD workflows + reusable workflows
+/.github/                               @noah-study
+
+# Sealed Secrets 스크립트 (잘못 변경 시 시크릿 누출)
+/scripts/seal.sh                        @noah-study
+/scripts/rotate-sealed-secrets.sh       @noah-study
+/scripts/backup-sealed-secrets-key.sh   @noah-study
+
+# 보안 컨트롤 매트릭스
+/docs/superpowers/security-controls.md  @noah-study
+
+# Spec / Plan / Reviews — 변경 시 architecture decision
+/docs/superpowers/specs/                @noah-study
+/docs/superpowers/plans/                @noah-study
+/docs/superpowers/reviews/              @noah-study

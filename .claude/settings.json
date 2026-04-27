@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "Bash(kubectl delete *)",
+      "Bash(kubectl edit *)",
+      "Bash(kubectl patch *)",
+      "Bash(kubectl replace *)",
+      "Bash(kubectl drain *)",
+      "Bash(kubectl taint *)",
+      "Bash(kubectl cordon *)",
+      "Bash(kubectl uncordon *)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git push --force-with-lease *)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean -fd *)",
+      "Bash(git rebase -i *)",
+      "Bash(rm -rf *)",
+      "Bash(rm -fr *)",
+      "Bash(gh repo delete *)",
+      "Bash(gh release delete *)",
+      "Bash(helm uninstall *)",
+      "Bash(helm delete *)",
+      "Bash(argocd app delete *)",
+      "Bash(argocd cluster rm *)",
+      "Bash(op item delete *)",
+      "Bash(op vault delete *)",
+      "Bash(op document delete *)",
+      "Bash(curl * | sh)",
+      "Bash(curl * | bash)",
+      "Bash(wget * | sh)",
+      "Bash(wget * | bash)",
+      "Bash(sudo *)"
+    ],
+    "allow": [
+      "WebFetch(domain:rekor.sigstore.dev)",
+      "WebFetch(domain:fulcio.sigstore.dev)",
+      "WebFetch(domain:kubernetes.io)",
+      "WebFetch(domain:k3s.io)",
+      "WebFetch(domain:argo-cd.readthedocs.io)",
+      "WebFetch(domain:cert-manager.io)",
+      "WebFetch(domain:cilium.io)",
+      "WebFetch(domain:grafana.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:docs.github.com)"
+    ]
+  }
+}
